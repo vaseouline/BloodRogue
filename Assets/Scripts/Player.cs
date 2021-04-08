@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Player : entity
 {
     public float moveSpeed = 5f;
 
@@ -16,36 +16,35 @@ public class NewBehaviourScript : MonoBehaviour
     public float fireRate;
     private float fireRateInterval;
     public float bulletTimer;
-    public float Health;
+    
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
-        
-        
+
+
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
+        base.Update();
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        
+
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-         var mouse0 = Input.GetMouseButtonDown(0);
-        if (mouse0 && fireRateInterval <= 0) {
-        
+        var mouse0 = Input.GetMouseButtonDown(0);
+        if (mouse0 && fireRateInterval <= 0)
+        {
+
             var bullet1 = Instantiate(bullet, this.gameObject.transform.position, this.gameObject.transform.rotation);
             Vector2 lookDir = mousePos - rb.position;
-            bullet1.GetComponent<Rigidbody2D>().velocity =  lookDir.normalized * bulletSpeed;
-            Destroy(bullet1, bulletTimer);
+            bullet1.GetComponent<Rigidbody2D>().velocity = lookDir.normalized * bulletSpeed;
             fireRateInterval = fireRate;
 
-            
+
         }
-        if (Health <= 0) {
-            Destroy(this.gameObject, 0);
-        }
+
     }
 
     private void FixedUpdate()
@@ -56,12 +55,15 @@ public class NewBehaviourScript : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
 
-        if (fireRateInterval > 0) {
+        if (fireRateInterval > 0)
+        {
             fireRateInterval--;
-        } else if (fireRateInterval < 0) {
+        }
+        else if (fireRateInterval < 0)
+        {
             fireRateInterval = 0;
         }
-       
-        
+
+
     }
 }
