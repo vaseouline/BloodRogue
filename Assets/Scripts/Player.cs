@@ -36,16 +36,12 @@ public class Player : entity
         var mouse0 = Input.GetMouseButtonDown(0);
         if (mouse0 && fireRateInterval <= 0)
         {
-
             var bullet1 = Instantiate(bullet, this.gameObject.transform.position, this.gameObject.transform.rotation);
             Physics2D.IgnoreCollision(bullet1.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Vector2 lookDir = mousePos - rb.position;
             bullet1.GetComponent<Rigidbody2D>().velocity = lookDir.normalized * bulletSpeed;
             fireRateInterval = fireRate;
-
-
         }
-
     }
 
     private void FixedUpdate()

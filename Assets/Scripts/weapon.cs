@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 //base weapon class
 //equipable by enemies and player
 //probably has a rigidbody and collidor when dropped
@@ -7,3 +11,22 @@
 
 //still not sure if game logic and display logic are tied here.
 // especially once we tie in animation
+
+//weapons are throwable
+
+public class weapon : MonoBehaviour {
+    public int baseDamage;
+    public int shootRate;
+    public int swingRate;
+    private int shootInterval;
+    private int swingInterval;
+
+
+    public void Shoot() {
+        
+    }
+
+    public void Swing() {
+
+    }
+}

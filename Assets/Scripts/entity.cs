@@ -6,6 +6,7 @@ public class entity : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public bool damageMultiplier;
     public int deathTimer;
     [SerializeField]
     private int _health;

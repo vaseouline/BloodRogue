@@ -17,6 +17,6 @@ public class bullet : entity
             collision.gameObject.GetComponent<entity>().TakeDamage(damage);
             
         }
-        Die();
+        Die(0);
     }
 }
