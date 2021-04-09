@@ -38,6 +38,7 @@ public class Player : entity
         {
 
             var bullet1 = Instantiate(bullet, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            Physics2D.IgnoreCollision(bullet1.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Vector2 lookDir = mousePos - rb.position;
             bullet1.GetComponent<Rigidbody2D>().velocity = lookDir.normalized * bulletSpeed;
             fireRateInterval = fireRate;
@@ -53,7 +54,7 @@ public class Player : entity
 
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        //rb.rotation = angle;
 
         if (fireRateInterval > 0)
         {
