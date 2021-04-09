@@ -45,8 +45,8 @@ public abstract class weapon : MonoBehaviour {
     }
 
     protected void Start() {
-        shootInterval = shootRate;
-        swingInterval = swingRate;
+        shootInterval = 0;
+        swingInterval = 0;
         automatic = false;
     }
 

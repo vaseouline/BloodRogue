@@ -15,7 +15,8 @@ public class pistol : weapon {
             return false;
         }
         Vector2 shootAngle = (Vector2) firingPosition.GetComponent<Transform>().position - heldPosition;
-        var bullet1 = Instantiate(bulletPrefab, base.firingPosition.transform.position, this.gameObject.transform.rotation);
+        GameObject bullet1 = Instantiate(bulletPrefab, base.firingPosition.transform.position, this.gameObject.transform.rotation);
+        bullet1.GetComponent<bullet>().damageMod = baseDamage;
         Physics2D.IgnoreCollision(bullet1.GetComponent<Collider2D>(), equiper.GetComponent<Collider2D>());
         bullet1.GetComponent<Rigidbody2D>().velocity = shootAngle.normalized * bulletSpeed;
         shootInterval = shootRate;

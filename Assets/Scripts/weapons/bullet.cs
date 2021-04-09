@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 public class bullet : entity
 {
-    public int damage;
 
+    [SerializeField]
+    private int baseDamage;
+    public int damageMod;
     new void Start() {
         base.Start();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Check for a match with the specified name on any GameObject that collides with your GameObject
+        //TODO damage calculation stuff
+        int damage = baseDamage + damageMod;
         if (collision.gameObject.name.Contains("enemy"))
         {
             collision.gameObject.GetComponent<entity>().TakeDamage(damage);

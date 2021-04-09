@@ -147,4 +147,5 @@ MonoBehaviour:
   damageMultiplier: 0
   deathTimer: 2
   _health: 0
-  damage: 10
+  baseDamage: 10
+  damageMod: 0
