@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class entity : MonoBehaviour
+public abstract class entity : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public bool damageMultiplier;
+    public int damageMultiplier;
     public int deathTimer;
     [SerializeField]
     private int _health;
