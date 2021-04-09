@@ -887,7 +887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   automatic: 0
   baseDamage: 10
-  shootRate: 20
+  shootRate: 7
   swingRate: 20
   firingPosition: {fileID: 227264722}
   equiper: {fileID: 855834597}
