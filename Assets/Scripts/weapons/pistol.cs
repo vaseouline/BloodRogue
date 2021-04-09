@@ -11,6 +11,9 @@ public class pistol : weapon {
         base.Start();
     }
     override public bool Shoot(Vector2 heldPosition) {
+        if (shootInterval > 0) {
+            return false;
+        }
         Vector2 shootAngle = (Vector2) firingPosition.GetComponent<Transform>().position - heldPosition;
         var bullet1 = Instantiate(bulletPrefab, base.firingPosition.transform.position, this.gameObject.transform.rotation);
         Physics2D.IgnoreCollision(bullet1.GetComponent<Collider2D>(), equiper.GetComponent<Collider2D>());

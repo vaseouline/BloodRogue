@@ -60,7 +60,11 @@ public class Player : entity
     }
 
     private void RequestShootWeapon() {
-        weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position);
+        if (weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
+            Debug.Log("shot weapon");
+        } else {
+            Debug.Log("weapon cooldown");
+        }
     }
 
     private void RequestSwingWeapon() {
