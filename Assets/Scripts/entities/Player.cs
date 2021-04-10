@@ -92,7 +92,7 @@ public class Player : entity
         //For now, just creating copy of the enemyweapon that needs to be transferred over to the player
         GameObject createdWeapon = Instantiate(newWeapon, weapon.transform.position, weapon.transform.rotation);
         currAmmoCount = createdWeapon.GetComponent<weapon>().ammoCount;
-        createdWeapon.GetComponent<weapon>().equiper = this.gameObject;
+        createdWeapon.GetComponent<weapon>().equipper = this.gameObject;
         
         DestroyImmediate(weapon);
         weapon = createdWeapon;
@@ -127,7 +127,6 @@ public class Player : entity
         newVector.y = a.y * b.y;
         newVector.z = a.z * b.z;
         return newVector;
-
     }
 
 }

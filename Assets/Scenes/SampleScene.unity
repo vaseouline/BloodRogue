@@ -433,6 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706846578}
+  - component: {fileID: 706846579}
   m_Layer: 0
   m_Name: Director
   m_TagString: Untagged
@@ -454,6 +455,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &706846579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706846577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f58ebc41a4516640ad5a31e808e7bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: e7a77942e1c34e7478c0e4c65f63490f, type: 3}
+  cursorMode: 0
 --- !u!1 &855834597
 GameObject:
   m_ObjectHideFlags: 0
