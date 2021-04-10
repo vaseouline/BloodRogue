@@ -648,6 +648,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 855834597}
     - target: {fileID: 1922215315214850817, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
+      propertyPath: equipper
+      value: 
+      objectReference: {fileID: 855834597}
+    - target: {fileID: 1922215315214850817, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
       propertyPath: ammoCount
       value: 10
       objectReference: {fileID: 0}

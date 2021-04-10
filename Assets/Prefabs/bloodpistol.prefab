@@ -18,7 +18,7 @@ MonoBehaviour:
   swingRate: 1
   ammoCount: 1000000
   firingPosition: {fileID: 7182016598280562988}
-  equiper: {fileID: 0}
+  equipper: {fileID: 0}
   bulletPrefab: {fileID: 5368200115042620557, guid: a1500b35ccc34334b85b864668ff76a6, type: 3}
   bulletSpeed: 40
   selfDmg: 10
