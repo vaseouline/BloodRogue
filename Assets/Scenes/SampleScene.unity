@@ -866,6 +866,7 @@ GameObject:
   - component: {fileID: 1893997219}
   - component: {fileID: 1893997220}
   - component: {fileID: 1893997221}
+  - component: {fileID: 1893997222}
   m_Layer: 0
   m_Name: pistol
   m_TagString: Untagged
@@ -905,9 +906,11 @@ MonoBehaviour:
   shootRate: 7
   swingRate: 20
   firingPosition: {fileID: 227264722}
-  equiper: {fileID: 855834597}
+  equipper: {fileID: 855834597}
   bulletPrefab: {fileID: 5368200115042620557, guid: a1500b35ccc34334b85b864668ff76a6, type: 3}
   bulletSpeed: 40
+  pistolAudioSource: {fileID: 1893997222}
+  pistolShootSound: {fileID: 8300000, guid: c92905b1bd9a556449985b7803f770f6, type: 3}
 --- !u!212 &1893997221
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -959,6 +962,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1893997222
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893997218}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 29338522f5dbe1c4089b0fae2d0ed20d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.434
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1896803095
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +1071,7 @@ GameObject:
   - component: {fileID: 1896803099}
   - component: {fileID: 1896803098}
   - component: {fileID: 1896803100}
+  - component: {fileID: 1896803101}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -1099,6 +1199,19 @@ MonoBehaviour:
   player: {fileID: 855834597}
   moveSpeed: 1
   damage: 10
+--- !u!114 &1896803101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896803095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df93edc6daaf2843b85097857d19670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHitParticles: {fileID: 3921434812520108101, guid: 0d527e19ae5edff489043b4d96721ddb, type: 3}
 --- !u!1 &2028471772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1223,7 @@ GameObject:
   - component: {fileID: 2028471773}
   - component: {fileID: 2028471775}
   - component: {fileID: 2028471774}
+  - component: {fileID: 2028471776}
   m_Layer: 0
   m_Name: rightwall
   m_TagString: Untagged
@@ -1208,6 +1322,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2028471776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028471772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df93edc6daaf2843b85097857d19670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHitParticles: {fileID: 7589821543511388331, guid: 98dbfc3e1fece82418c756bf3497fdcb, type: 3}
 --- !u!1 &2086041587
 GameObject:
   m_ObjectHideFlags: 0

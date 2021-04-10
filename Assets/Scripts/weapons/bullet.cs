@@ -20,6 +20,9 @@ public class bullet : entity
             collision.gameObject.GetComponent<entity>().TakeDamage(damage);
             
         }
+        if (collision.gameObject.GetComponent<hittable>()) {
+            collision.gameObject.GetComponent<hittable>().spawnHitParticles(collision);
+        }
         Die(0);
     }
 }

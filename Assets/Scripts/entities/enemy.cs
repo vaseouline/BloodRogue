@@ -32,7 +32,7 @@ public class enemy : entity
     void OnCollisionEnter2D(Collision2D collision)
     {
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.name == "player")
+        if (collision.gameObject.name.Contains("player"))
         {
             
             collision.gameObject.GetComponent<entity>().TakeDamage(damage);
