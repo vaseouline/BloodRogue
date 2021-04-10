@@ -49,13 +49,11 @@ public class Player : entity
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
-        oldLookDir = newLookDir;
-        newLookDir = mousePos - rb.position;
-        lookRotation.SetFromToRotation(oldLookDir, newLookDir);
-        Vector3 newPosition = rb.position + newLookDir.normalized * armlength;
+        float angle = AngleBetweenTwoPoints(mousePos, rb.position);
+        newLookDir = (mousePos - rb.position).normalized;
+        Vector3 newPosition = rb.position + newLookDir * armlength;
         handPosition.GetComponent<Transform>().position = newPosition;
-        //TODO quaternion still is a bit weird
-        handPosition.GetComponent<Transform>().rotation = lookRotation * handPosition.GetComponent<Transform>().rotation;
+        handPosition.GetComponent<Transform>().rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
        
     }
 
@@ -70,4 +68,9 @@ public class Player : entity
     private void RequestSwingWeapon() {
         weapon.GetComponent<weapon>().Swing(handPosition.GetComponent<Transform>().position);
     }
+
+    //TODO move this to utilities class
+    float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
+         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+     }
 }
