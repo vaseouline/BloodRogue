@@ -11,7 +11,7 @@ public class pistol : weapon {
         base.Start();
     }
     override public bool Shoot(Vector2 heldPosition) {
-        Debug.Log(shootInterval);
+
         if (shootInterval > 0) {
             return false;
         }

@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4602913408699272909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182016597787622236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9c7ef8239ad7147b63cedb8b3703b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatic: 0
+  baseDamage: 10
+  shootRate: 7
+  swingRate: 1
+  ammoCount: 1000000
+  firingPosition: {fileID: 7182016598280562988}
+  equiper: {fileID: 0}
+  bulletPrefab: {fileID: 5368200115042620557, guid: a1500b35ccc34334b85b864668ff76a6, type: 3}
+  bulletSpeed: 40
+  selfDmg: 10
 --- !u!1001 &8720854189500358747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,8 +83,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922215315214850823, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1922215315214850817, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
+--- !u!1 &7182016597787622236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1922215315214850823, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
+  m_PrefabInstance: {fileID: 8720854189500358747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7182016598280562988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1922215316610189687, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
+  m_PrefabInstance: {fileID: 8720854189500358747}
+  m_PrefabAsset: {fileID: 0}

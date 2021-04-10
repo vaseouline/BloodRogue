@@ -34,10 +34,11 @@ public class Player : entity
         //Instantiate()
         //this is only so player can instantiate a copy when needed.
         base.Start();
-        Debug.Log("FDSFDGHFSGH");
         bloodgun.SetActive(false);
         currAmmoCount = weapon.GetComponent<weapon>().ammoCount;
         Debug.Log("Starting with" + currAmmoCount.ToString() + " ammo");
+        Debug.Log(weapon.transform.localScale);
+
 
     }
 
@@ -63,13 +64,11 @@ public class Player : entity
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
-        oldLookDir = newLookDir;
-        newLookDir = mousePos - rb.position;
-        lookRotation.SetFromToRotation(oldLookDir, newLookDir);
-        Vector3 newPosition = rb.position + newLookDir.normalized * armlength;
+        float angle = AngleBetweenTwoPoints(mousePos, rb.position);
+        newLookDir = (mousePos - rb.position).normalized;
+        Vector3 newPosition = rb.position + newLookDir * armlength;
         handPosition.GetComponent<Transform>().position = newPosition;
-        //TODO quaternion still is a bit weird
-        handPosition.GetComponent<Transform>().rotation = lookRotation * handPosition.GetComponent<Transform>().rotation;
+        handPosition.GetComponent<Transform>().rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
        
     }
 
@@ -95,10 +94,14 @@ public class Player : entity
         currAmmoCount = createdWeapon.GetComponent<weapon>().ammoCount;
         createdWeapon.GetComponent<weapon>().equiper = this.gameObject;
         
-        //for now transfer over the firing position since there is no prefab for it. (?)
-        //GameObject oldfiringPos = weapon.GetComponent<weapon>().firingPosition;
-        //GameObject newFiringPosition = Instantiate(oldfiringPos, oldfiringPos.transform.position, oldfiringPos.transform.rotation);
-        //newFiringPosition.transform.parent = createdWeapon.transform;        
+        DestroyImmediate(weapon);
+        weapon = createdWeapon;
+
+        //weapon.transform.parent = handPosition.transform;
+        Vector3 calc = MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
+        createdWeapon.transform.localScale = MatrixMultiplication(createdWeapon.transform.localScale, calc);
+
+        Debug.Log(calc);
 
     }
 
@@ -107,7 +110,24 @@ public class Player : entity
         Debug.Log(currAmmoCount);
         if(currAmmoCount <= 0){
             Debug.Log("AMMO RAN OUT SWITCHING TO BLOODGUN");
-            //GetWeapon(bloodgun);
+            bloodgun.SetActive(true);
+            GetWeapon(bloodgun);
         }
     }
+
+    //TODO move this to utilities class
+    float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
+         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+     }
+
+    
+    Vector3 MatrixMultiplication(Vector3 a, Vector3 b) {
+        Vector3 newVector = new Vector3(0,0,0);
+        newVector.x = a.x * b.x;
+        newVector.y = a.y * b.y;
+        newVector.z = a.z * b.z;
+        return newVector;
+
+    }
+
 }
