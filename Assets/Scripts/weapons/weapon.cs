@@ -19,6 +19,8 @@ public abstract class weapon : MonoBehaviour {
     public int baseDamage;
     public int shootRate;
     public int swingRate;
+    public Sprite icon; //Weapon icon for visual for UI
+    public int ammoCount; //Inital ammo count for any weapons
     public GameObject firingPosition;
     public GameObject equipper;
     private int _shootInterval;
@@ -48,6 +50,20 @@ public abstract class weapon : MonoBehaviour {
         shootInterval = 0;
         swingInterval = 0;
         automatic = false;
+        //At the moment, entity doesn't have handposition and it shouldn't
+        //because bullet is also an entity.
+        //Just checking for now if equiper has Player or Enemy script and check for handposition from there.
+        if(equipper.GetComponent<Player>() != null) {
+            Debug.Log("Set parent object");
+            this.transform.parent = equipper.GetComponent<Player>().handPosition.transform;
+        }
+        //Right now enemy doesn't have handPosition as well
+        /*
+        else if (equiper.GetComponent<enemy>() != null) {
+            this.transform.parent = equiper.GetComponent<enemy>().handPosition.transform;
+        }
+        */
+        
     }
 
     protected void Update() {

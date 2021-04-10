@@ -13,6 +13,7 @@ public class pistol : weapon {
         base.Start();
     }
     override public bool Shoot(Vector2 heldPosition) {
+
         if (shootInterval > 0) {
             return false;
         }
