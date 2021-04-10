@@ -20,7 +20,7 @@ public abstract class weapon : MonoBehaviour {
     public int shootRate;
     public int swingRate;
     public GameObject firingPosition;
-    public GameObject equiper;
+    public GameObject equipper;
     private int _shootInterval;
     protected int shootInterval {
         get { return _shootInterval; }
