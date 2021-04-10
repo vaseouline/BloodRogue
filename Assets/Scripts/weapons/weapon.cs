@@ -19,6 +19,7 @@ public abstract class weapon : MonoBehaviour {
     public int baseDamage;
     public int shootRate;
     public int swingRate;
+    public Sprite icon; //Weapon icon for visual for UI
     public int ammoCount; //Inital ammo count for any weapons
     public GameObject firingPosition;
     public GameObject equipper;
@@ -56,7 +57,7 @@ public abstract class weapon : MonoBehaviour {
             Debug.Log("Set parent object");
             this.transform.parent = equipper.GetComponent<Player>().handPosition.transform;
         }
-        //Right now enemy doesn't have handPosition
+        //Right now enemy doesn't have handPosition as well
         /*
         else if (equiper.GetComponent<enemy>() != null) {
             this.transform.parent = equiper.GetComponent<enemy>().handPosition.transform;

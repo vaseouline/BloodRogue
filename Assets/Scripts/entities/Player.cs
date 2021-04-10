@@ -14,6 +14,7 @@ public class Player : entity
     
     //This is going to be currentweapon player is holding that can be swapped
     public GameObject weapon;
+    public GameObject userInterface;
 
     private Vector2 lookDir;
     public GameObject handPosition;
@@ -38,7 +39,7 @@ public class Player : entity
         currAmmoCount = weapon.GetComponent<weapon>().ammoCount;
         Debug.Log("Starting with" + currAmmoCount.ToString() + " ammo");
         Debug.Log(weapon.transform.localScale);
-
+        //health = 6;
 
     }
 
@@ -93,6 +94,10 @@ public class Player : entity
         GameObject createdWeapon = Instantiate(newWeapon, weapon.transform.position, weapon.transform.rotation);
         currAmmoCount = createdWeapon.GetComponent<weapon>().ammoCount;
         createdWeapon.GetComponent<weapon>().equipper = this.gameObject;
+
+        userInterface.GetComponent<UI>().updateWeapon(createdWeapon);
+        //userInterface.GetComponent<UI>().updateAmmo(currAmmoCount);
+
         
         DestroyImmediate(weapon);
         weapon = createdWeapon;
@@ -107,6 +112,7 @@ public class Player : entity
 
     private void AdjustAmmoCount(){
         currAmmoCount -= 1;
+        userInterface.GetComponent<UI>().updateAmmo(currAmmoCount);
         Debug.Log(currAmmoCount);
         if(currAmmoCount <= 0){
             Debug.Log("AMMO RAN OUT SWITCHING TO BLOODGUN");
@@ -120,7 +126,7 @@ public class Player : entity
          return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
      }
 
-    
+    //Maybe goes to utilities class?
     Vector3 MatrixMultiplication(Vector3 a, Vector3 b) {
         Vector3 newVector = new Vector3(0,0,0);
         newVector.x = a.x * b.x;
