@@ -19,6 +19,7 @@ public abstract class weapon : MonoBehaviour {
     public int baseDamage;
     public int shootRate;
     public int swingRate;
+    public int ammoCount; //Inital ammo count for any weapons
     public GameObject firingPosition;
     public GameObject equiper;
     private int _shootInterval;
