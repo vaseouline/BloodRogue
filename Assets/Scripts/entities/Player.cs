@@ -7,7 +7,6 @@ public class Player : entity
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
-    public Camera cam;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -45,20 +44,6 @@ public class Player : entity
     // Update is called once per frame
     new void Update()
     {
-        base.Update();
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        var mouse0 = Input.GetMouseButtonDown(0);
-        var mouse1 = Input.GetMouseButtonDown(1);
-        if (mouse0)
-        {
-            RequestShootWeapon();
-        }
-        if (mouse1) {
-            RequestSwingWeapon();
-        }
     }
 
     void FixedUpdate()
@@ -72,7 +57,7 @@ public class Player : entity
        
     }
 
-    private void RequestShootWeapon() {
+    public void RequestShootWeapon() {
         if (weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
             AdjustAmmoCount();
             Debug.Log("shot weapon");
@@ -81,7 +66,7 @@ public class Player : entity
         }
     }
 
-    private void RequestSwingWeapon() {
+    public void RequestSwingWeapon() {
         weapon.GetComponent<weapon>().Swing(handPosition.GetComponent<Transform>().position);
     }
 

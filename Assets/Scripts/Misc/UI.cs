@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
     public Sprite hpIcon;
     public Sprite weaponIcon;
 
-    //public GameObject player;
+    public GameObject player;
     
    
 
