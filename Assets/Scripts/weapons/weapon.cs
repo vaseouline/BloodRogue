@@ -78,6 +78,6 @@ public abstract class weapon : MonoBehaviour {
 
     public abstract bool Shoot(Vector2 heldPosition);
 
-    public abstract bool Swing(Vector2 heldPosition);
+    public abstract bool Swing(Vector2 heldPosition);//TODO swing should actually be on mouse 1 as well only accessible after no ammo. this is to force the player to expend their ammo to fight, so to enourage them to not play melee to save "good" ammo. we want the player to dump resources as much as possible and holding onto resources is really costly if they choose to do so.
 
 }
