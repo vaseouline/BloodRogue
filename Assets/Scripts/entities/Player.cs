@@ -14,7 +14,6 @@ public class Player : entity
     
     //This is going to be currentweapon player is holding that can be swapped
     public GameObject weapon;
-    public GameObject userInterface;
 
     private Vector2 lookDir;
     public GameObject handPosition;
@@ -65,7 +64,7 @@ public class Player : entity
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
-        float angle = AngleBetweenTwoPoints(mousePos, rb.position);
+        float angle = Utilities.AngleBetweenTwoPoints(mousePos, rb.position);
         newLookDir = (mousePos - rb.position).normalized;
         Vector3 newPosition = rb.position + newLookDir * armlength;
         handPosition.GetComponent<Transform>().position = newPosition;
@@ -94,17 +93,13 @@ public class Player : entity
         GameObject createdWeapon = Instantiate(newWeapon, weapon.transform.position, weapon.transform.rotation);
         currAmmoCount = createdWeapon.GetComponent<weapon>().ammoCount;
         createdWeapon.GetComponent<weapon>().equipper = this.gameObject;
-
-        //userInterface.GetComponent<UI>().updateWeapon(createdWeapon);
-        //userInterface.GetComponent<UI>().updateAmmo(currAmmoCount);
-
         
         DestroyImmediate(weapon);
         weapon = createdWeapon;
-
+        createdWeapon.transform.parent = handPosition.transform;
         //weapon.transform.parent = handPosition.transform;
-        Vector3 calc = MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
-        createdWeapon.transform.localScale = MatrixMultiplication(createdWeapon.transform.localScale, calc);
+        Vector3 calc = Utilities.MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
+        createdWeapon.transform.localScale = Utilities.MatrixMultiplication(createdWeapon.transform.localScale, calc);
 
         Debug.Log(calc);
 
@@ -119,20 +114,6 @@ public class Player : entity
             bloodgun.SetActive(true);
             GetWeapon(bloodgun);
         }
-    }
-
-    //TODO move this to utilities class
-    float AngleBetweenTwoPoints(Vector2 a, Vector2 b) {
-         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
-     }
-
-    //Maybe goes to utilities class?
-    Vector3 MatrixMultiplication(Vector3 a, Vector3 b) {
-        Vector3 newVector = new Vector3(0,0,0);
-        newVector.x = a.x * b.x;
-        newVector.y = a.y * b.y;
-        newVector.z = a.z * b.z;
-        return newVector;
     }
 
 }
