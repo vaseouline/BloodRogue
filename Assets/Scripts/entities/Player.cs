@@ -45,6 +45,7 @@ public class Player : entity
     // Update is called once per frame
     new void Update()
     {
+        
         base.Update();
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
