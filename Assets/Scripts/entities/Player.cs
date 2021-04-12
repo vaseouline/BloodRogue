@@ -44,6 +44,7 @@ public class Player : entity
     // Update is called once per frame
     new void Update()
     {
+
     }
 
     void FixedUpdate()
