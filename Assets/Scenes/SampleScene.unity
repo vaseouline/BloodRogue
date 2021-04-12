@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 855834601}
   - component: {fileID: 855834602}
   - component: {fileID: 855834603}
+  - component: {fileID: 855834604}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -580,7 +581,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 855834597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 118de5d87a10f024b901e3caa9460710, type: 3}
+  m_Script: {fileID: 11500000, guid: fd6b6b86ce1b0c84d894aa5c56eccdf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0
@@ -588,9 +589,7 @@ MonoBehaviour:
   _health: 100
   moveSpeed: 10
   rb: {fileID: 855834601}
-  cam: {fileID: 519420031}
   weapon: {fileID: 1334305007}
-  userInterface: {fileID: 0}
   handPosition: {fileID: 1480543328}
   armlength: 0.29
   bloodgun: {fileID: 7182016597787622236, guid: 5594ce78e5de24d4bb33ddc0d554839b, type: 3}
@@ -652,6 +651,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &855834604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855834597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94f73f32baf2c348ac248cf2658c7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 519420031}
 --- !u!1 &1334305007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1922215315214850823, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
