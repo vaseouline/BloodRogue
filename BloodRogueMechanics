@@ -1,0 +1,82 @@
+left click: Shoot
+    shoot when ammo
+right click: Soul Extraction/throwing knife
+    throw regardless of ammo
+    Recharges ammo to full on landing
+    Only 1 thrown at a time
+    Fast projectile speed
+    Accurate
+    Has an internal short cooldown. like .1 second
+    3x charge system. Repickup charges after kill or miss.
+combo system: BloodRush
+    combo window: slowly closes until a kill
+    Bloodrush is entered on a combo of atleast 5
+    Bloodrush gives faster movement speed, shooting speed, throwing projectile speed. 
+    End of combo gives rewards, like currency, hp, ammo charge, knife charge
+Upgrades:
+    Passive Upgrades
+    Get them at the shop at the end of each level
+    Changes to knife behavior.
+    Basic:
+        Ammo charge capacity.
+    Intermediate
+        Health Capacity
+    Rare:
+        Knife stuns on hit
+        Knife Aoe damages
+        Bloodrush window lasts longer
+    Super Rare:
+        Knife bounces to closest enemy
+        Extra projectiles on shots
+        bullets pierce
+        lifesteal eat corpse
+        Explosive corpses
+
+Consumables: Scrapped
+    equipment to use in combat, mapped to num1-4. Charges
+    Movement speed buff
+    auto turret
+    auto target aoe.
+    strip armor thermite
+    hp shield
+
+Abilities:
+    1 ability
+    either offensive/maintain combo
+    or defensive/stay alive
+    Either a long cooldown or charge/like a consumable 1
+    is the ability chose at the beginning of the game? or is it recieved like an upgrade between levels
+
+    Selection of 3 Abilities at start.
+    Reroll or choose an upgrade.
+
+Enemies:
+
+    1 hit
+    Snake:
+        crawls slowly until close.
+        Lunge attack.
+    Bird:
+        flies around
+        turns into missile when sight line is mapped
+    humanoid:
+        walks around
+        shoots gun at player
+    seeker rabbits:
+        spawns in mass and runs towards you
+    seeker goblins:
+        spawns in mass and throws rocks at you
+    2 hit
+    3 hit
+    Eyeball:
+        lasers you
+    rabbit den:
+        stationary
+        spawns seeker rabbits
+    Sometimes they are elite: with various buffs. Like a 1 hit shield. or temporary fake invis.
+    unique patterns for each enemy
+
+Level system:
+Shop:
+End of stage fight?:
+How to win?:
