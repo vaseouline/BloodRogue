@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    private Player playerState;
+    private PlayerStateManager playerState;
     Vector2 movement;
     Vector2 mousePos;
     public Camera cam;
@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
-        playerState = gameObject.GetComponent<Player>();
+        playerState = gameObject.GetComponent<PlayerStateManager>();
         
     }
 
@@ -26,7 +26,8 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        playerState.RequestMove(movement);
+        playerState.RequestPlayerAngle(mousePos);
     }
 
 
@@ -44,9 +45,6 @@ public class PlayerInput : MonoBehaviour
         if (mouse1) {
             playerState.RequestSwingWeapon();
         }
-
-        //Send movement
-        //mousePos
     }
 
 }

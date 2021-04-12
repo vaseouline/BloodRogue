@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : entity
+public class PlayerStateManager : entity
 {
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
-
-    Vector2 movement;
-    Vector2 mousePos;
     
     //This is going to be currentweapon player is holding that can be swapped
     public GameObject weapon;
@@ -49,13 +46,19 @@ public class Player : entity
 
     void FixedUpdate()
     {
+       
+    }
+
+    public void RequestMove(Vector2 movement) {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void RequestPlayerAngle(Vector2 mousePos) {
         float angle = Utilities.AngleBetweenTwoPoints(mousePos, rb.position);
         newLookDir = (mousePos - rb.position).normalized;
         Vector3 newPosition = rb.position + newLookDir * armlength;
         handPosition.GetComponent<Transform>().position = newPosition;
         handPosition.GetComponent<Transform>().rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
-       
     }
 
     public void RequestShootWeapon() {
