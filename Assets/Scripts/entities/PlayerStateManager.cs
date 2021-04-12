@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : entity
+public class PlayerStateManager : entity
 {
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
-    public Camera cam;
-
-    Vector2 movement;
-    Vector2 mousePos;
     
     //This is going to be currentweapon player is holding that can be swapped
     public GameObject weapon;
@@ -45,35 +41,27 @@ public class Player : entity
     // Update is called once per frame
     new void Update()
     {
-        
-        base.Update();
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        var mouse0 = Input.GetMouseButtonDown(0);
-        var mouse1 = Input.GetMouseButtonDown(1);
-        if (mouse0)
-        {
-            RequestShootWeapon();
-        }
-        if (mouse1) {
-            RequestSwingWeapon();
-        }
     }
 
     void FixedUpdate()
     {
+       
+    }
+
+    public void RequestMove(Vector2 movement) {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void RequestPlayerAngle(Vector2 mousePos) {
         float angle = Utilities.AngleBetweenTwoPoints(mousePos, rb.position);
         newLookDir = (mousePos - rb.position).normalized;
         Vector3 newPosition = rb.position + newLookDir * armlength;
         handPosition.GetComponent<Transform>().position = newPosition;
         handPosition.GetComponent<Transform>().rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
-       
     }
 
-    private void RequestShootWeapon() {
+    public void RequestShootWeapon() {
         if (weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
             AdjustAmmoCount();
             Debug.Log("shot weapon");
@@ -82,7 +70,7 @@ public class Player : entity
         }
     }
 
-    private void RequestSwingWeapon() {
+    public void RequestSwingWeapon() {
         weapon.GetComponent<weapon>().Swing(handPosition.GetComponent<Transform>().position);
     }
 
