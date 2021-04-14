@@ -10,6 +10,7 @@ public class PlayerStateManager : entity
     
     //This is going to be currentweapon player is holding that can be swapped
     public GameObject weapon;
+    public GameObject soulweapon;
 
     private Vector2 lookDir;
     public GameObject handPosition;
@@ -18,8 +19,10 @@ public class PlayerStateManager : entity
     private Quaternion lookRotation;
     public float armlength;
 
+    private int ammoCharge;
     private int currAmmoCount;
-    public GameObject bloodgun;
+    public int currSoulAmmoCount;
+
     public GameObject ability;
     public GameObject consumable;
 
@@ -30,7 +33,6 @@ public class PlayerStateManager : entity
         //Instantiate()
         //this is only so player can instantiate a copy when needed.
         base.Start();
-        bloodgun.SetActive(false);
         currAmmoCount = weapon.GetComponent<weapon>().ammoCount;
         Debug.Log("Starting with" + currAmmoCount.ToString() + " ammo");
         Debug.Log(weapon.transform.localScale);
@@ -62,6 +64,9 @@ public class PlayerStateManager : entity
     }
 
     public void RequestShootWeapon() {
+        if(currAmmoCount == 0) {
+            return;
+        }
         if (weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
             AdjustAmmoCount();
             Debug.Log("shot weapon");
@@ -74,7 +79,17 @@ public class PlayerStateManager : entity
         weapon.GetComponent<weapon>().Swing(handPosition.GetComponent<Transform>().position);
     }
 
-    private void GetWeapon(GameObject newWeapon) {
+    public void RequestSoulCharge() {
+        if (currSoulAmmoCount == 0) {
+            return;
+        }
+        if (soulweapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
+            currSoulAmmoCount -=1;
+        }
+
+    }
+
+    public void GetWeapon(GameObject newWeapon) {
         Debug.Log(newWeapon);
 
         //Not sure if transferring the weapon directly to the player will be good
@@ -83,10 +98,10 @@ public class PlayerStateManager : entity
         currAmmoCount = createdWeapon.GetComponent<weapon>().ammoCount;
         createdWeapon.GetComponent<weapon>().equipper = this.gameObject;
         
-        DestroyImmediate(weapon);
+        Destroy(weapon);
         weapon = createdWeapon;
+
         createdWeapon.transform.parent = handPosition.transform;
-        //weapon.transform.parent = handPosition.transform;
         Vector3 calc = Utilities.MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
         createdWeapon.transform.localScale = Utilities.MatrixMultiplication(createdWeapon.transform.localScale, calc);
 
@@ -99,10 +114,14 @@ public class PlayerStateManager : entity
         //userInterface.GetComponent<UI>().updateAmmo(currAmmoCount);
         Debug.Log(currAmmoCount);
         if(currAmmoCount <= 0){
-            Debug.Log("AMMO RAN OUT SWITCHING TO BLOODGUN");
-            bloodgun.SetActive(true);
-            GetWeapon(bloodgun);
+            currAmmoCount = 0;
+            Debug.Log("No ammo left");
+            //GetWeapon(null);
         }
+    }
+
+    public void RegainSoulCharge(){
+        currSoulAmmoCount +=1;
     }
 
 }
