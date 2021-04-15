@@ -44,5 +44,6 @@ public class ComboCounterSystem : MonoBehaviour
         case 50:
             print ("Get a life.");
             break;
+        }
     }
 }
