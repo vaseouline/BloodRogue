@@ -19,6 +19,7 @@ public class soulbullet : bullet
             inAir = false;
             GameObject newWeapon = collision.gameObject.GetComponent<enemy>().GetWeapon();
             player.GetComponent<PlayerStateManager>().RegainSoulCharge();
+            player.GetComponent<PlayerStateManager>().ResetAmmoToTotal();
             player.GetComponent<PlayerStateManager>().GetWeapon(newWeapon);
             Die();
         }

@@ -81,6 +81,7 @@ MonoBehaviour:
   swingRate: 20
   icon: {fileID: 0}
   ammoCount: 15
+  ammoCostPerShot: 4
   firingPosition: {fileID: 3500183456909701699}
   equipper: {fileID: 0}
   bulletPrefab: {fileID: 3509919349369951969, guid: b8b8415e766908844bb2941a2284533f, type: 3}

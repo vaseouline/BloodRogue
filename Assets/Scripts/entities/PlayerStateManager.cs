@@ -96,6 +96,7 @@ public class PlayerStateManager : entity
 
     public void RequestSoulCharge() {
         if (currSoulAmmoCount == 0) {
+            Debug.Log("Out of soul charge");
             return;
         }
         if (soulweapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {

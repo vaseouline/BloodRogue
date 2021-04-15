@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 0
-  baseDamage: 20
+  baseDamage: 10
   shootRate: 7
   swingRate: 20
   icon: {fileID: 0}
   ammoCount: 3
+  ammoCostPerShot: 0
   firingPosition: {fileID: 2584837081447315415}
   equipper: {fileID: 0}
   soulBulletPrefab: {fileID: 6390963274827997041, guid: e1411f9150f9d74498d20fa2cd145ec9, type: 3}

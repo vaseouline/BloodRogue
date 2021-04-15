@@ -18,12 +18,13 @@ public class soulchargesystem : weapon {
         if (shootInterval > 0) {
             return false;
         }
+        //TODO either eventually change or otherwise just use pistol.
         Vector2 shootAngle = (Vector2) firingPosition.GetComponent<Transform>().position - heldPosition;
-        GameObject bullet1 = Instantiate(soulBulletPrefab, base.firingPosition.transform.position, this.gameObject.transform.rotation);
-        bullet1.GetComponent<soulbullet>().damageMod = baseDamage;
-        bullet1.GetComponent<soulbullet>().player = equipper;
-        Physics2D.IgnoreCollision(bullet1.GetComponent<Collider2D>(), equipper.GetComponent<Collider2D>());
-        bullet1.GetComponent<Rigidbody2D>().velocity = shootAngle.normalized * bulletSpeed;
+        GameObject bulletInstance = Instantiate(soulBulletPrefab, base.firingPosition.transform.position, this.gameObject.transform.rotation);
+        bulletInstance.GetComponent<soulbullet>().damageMod = baseDamage;
+        bulletInstance.GetComponent<soulbullet>().player = equipper;
+        Physics2D.IgnoreCollision(bulletInstance.GetComponent<Collider2D>(), equipper.GetComponent<Collider2D>());
+        bulletInstance.GetComponent<Rigidbody2D>().velocity = shootAngle.normalized * bulletSpeed;
         //soulBulletAudioSource.PlayOneShot(soulBulletShootSound);
         shootInterval = shootRate;
         return true;
