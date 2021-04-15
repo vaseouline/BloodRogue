@@ -21,6 +21,7 @@ public abstract class weapon : MonoBehaviour {
     public int swingRate;
     public Sprite icon; //Weapon icon for visual for UI
     public int ammoCount; //Inital ammo count for any weapons
+    public int ammoCostPerShot;
     public GameObject firingPosition;
     public GameObject equipper;
     private int _shootInterval;

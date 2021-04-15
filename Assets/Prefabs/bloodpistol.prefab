@@ -18,6 +18,7 @@ MonoBehaviour:
   swingRate: 1
   icon: {fileID: 0}
   ammoCount: 1000000
+  ammoCostPerShot: 1
   firingPosition: {fileID: 7182016598280562988}
   equipper: {fileID: 0}
   bulletPrefab: {fileID: 5368200115042620557, guid: a1500b35ccc34334b85b864668ff76a6, type: 3}
@@ -86,7 +87,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922215315214850823, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1922215315214850817, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}

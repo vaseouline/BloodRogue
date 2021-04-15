@@ -18,10 +18,23 @@ public class PlayerStateManager : entity
     private Quaternion lookRotation;
     public float armlength;
 
-    private int currAmmoCount;
     public GameObject bloodgun;
     public GameObject ability;
     public GameObject consumable;
+    public int ammoChargeCountTotal = 10;
+    private int _ammoChargeCountCurrent;
+    private int ammoChargeCountCurrent {
+        get { return _ammoChargeCountCurrent; }
+        set {
+            _ammoChargeCountCurrent = value;
+            if(_ammoChargeCountCurrent <= 0) 
+            {
+                _ammoChargeCountCurrent = 0; // force zero as min value
+            }
+        }
+
+    }
+    
 
     // Start is called before the first frame update
     new void Start()
@@ -30,9 +43,8 @@ public class PlayerStateManager : entity
         //Instantiate()
         //this is only so player can instantiate a copy when needed.
         base.Start();
+        ammoChargeCountCurrent = ammoChargeCountTotal;
         bloodgun.SetActive(false);
-        currAmmoCount = weapon.GetComponent<weapon>().ammoCount;
-        Debug.Log("Starting with" + currAmmoCount.ToString() + " ammo");
         Debug.Log(weapon.transform.localScale);
         //health = 6;
 
@@ -62,12 +74,18 @@ public class PlayerStateManager : entity
     }
 
     public void RequestShootWeapon() {
-        if (weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
-            AdjustAmmoCount();
-            Debug.Log("shot weapon");
+        if (ammoChargeCountCurrent > 0) {
+            if (weapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
+                SubtractAmmoCount(weapon.GetComponent<weapon>().ammoCostPerShot);
+                Debug.Log("shot weapon");
+            } else {
+                Debug.Log("weapon cooldown");
+            }
         } else {
-            Debug.Log("weapon cooldown");
+            Debug.Log("Out of ammo");
         }
+
+        
     }
 
     public void RequestSwingWeapon() {
@@ -76,33 +94,40 @@ public class PlayerStateManager : entity
 
     private void GetWeapon(GameObject newWeapon) {
         Debug.Log(newWeapon);
+        GameObject createdWeapon = InitializeWeapon(newWeapon);
+        SwitchWeapon(createdWeapon);
+    }
 
-        //Not sure if transferring the weapon directly to the player will be good
-        //For now, just creating copy of the enemyweapon that needs to be transferred over to the player
+    private GameObject InitializeWeapon(GameObject newWeapon) {
         GameObject createdWeapon = Instantiate(newWeapon, weapon.transform.position, weapon.transform.rotation);
-        currAmmoCount = createdWeapon.GetComponent<weapon>().ammoCount;
         createdWeapon.GetComponent<weapon>().equipper = this.gameObject;
-        
+        return createdWeapon;
+    }
+
+    private void SwitchWeapon(GameObject createdWeapon) {
         DestroyImmediate(weapon);
         weapon = createdWeapon;
         createdWeapon.transform.parent = handPosition.transform;
         //weapon.transform.parent = handPosition.transform;
         Vector3 calc = Utilities.MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
         createdWeapon.transform.localScale = Utilities.MatrixMultiplication(createdWeapon.transform.localScale, calc);
-
         Debug.Log(calc);
-
     }
 
-    private void AdjustAmmoCount(){
-        currAmmoCount -= 1;
+    private void SubtractAmmoCount(int ammoCost){
+        ammoChargeCountCurrent -= ammoCost;
         //userInterface.GetComponent<UI>().updateAmmo(currAmmoCount);
-        Debug.Log(currAmmoCount);
-        if(currAmmoCount <= 0){
-            Debug.Log("AMMO RAN OUT SWITCHING TO BLOODGUN");
-            bloodgun.SetActive(true);
-            GetWeapon(bloodgun);
-        }
+        Debug.Log("current ammo: " + ammoChargeCountCurrent);
+    }
+
+    public void ResetAmmoToTotal() {
+        ammoChargeCountCurrent = ammoChargeCountTotal;
+        Debug.Log("Reset! current ammo: " + ammoChargeCountCurrent);
+    }
+
+    public void IncreaseAmmoTotal() {
+        ammoChargeCountTotal += 1;
+        ammoChargeCountCurrent += 1;//maybe remove this. only weird case, is if you have 0 ammo, and pick this up, it gives you an extra shot. It might be good for split second choices/increasing combos
     }
 
 }
