@@ -232,6 +232,16 @@ Transform:
   m_Father: {fileID: 2086041589}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &514038743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2584837081441053366, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+  m_PrefabInstance: {fileID: 2584837081669742945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &514038744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+  m_PrefabInstance: {fileID: 2584837081669742945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,11 +504,14 @@ GameObject:
   m_Component:
   - component: {fileID: 855834599}
   - component: {fileID: 855834598}
-  - component: {fileID: 855834600}
   - component: {fileID: 855834601}
   - component: {fileID: 855834602}
   - component: {fileID: 855834603}
   - component: {fileID: 855834604}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 855834600}
+>>>>>>> b9d4795d27364fa2ea3e3454787b4ded06a6060c
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -581,6 +594,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 855834597}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: fd6b6b86ce1b0c84d894aa5c56eccdf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -595,6 +609,12 @@ MonoBehaviour:
   bloodgun: {fileID: 7182016597787622236, guid: 5594ce78e5de24d4bb33ddc0d554839b, type: 3}
   ability: {fileID: 0}
   consumable: {fileID: 0}
+=======
+  m_Script: {fileID: 11500000, guid: a94f73f32baf2c348ac248cf2658c7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 519420031}
+>>>>>>> b9d4795d27364fa2ea3e3454787b4ded06a6060c
 --- !u!50 &855834601
 Rigidbody2D:
   serializedVersion: 4
@@ -660,10 +680,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 855834597}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: a94f73f32baf2c348ac248cf2658c7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
+=======
+  m_Script: {fileID: 11500000, guid: fd6b6b86ce1b0c84d894aa5c56eccdf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 10
+  deathTimer: 0
+  _health: 100
+  moveSpeed: 5
+  rb: {fileID: 855834601}
+  weapon: {fileID: 1334305007}
+  soulweapon: {fileID: 514038743}
+  handPosition: {fileID: 1480543328}
+  armlength: 0
+  currSoulAmmoCount: 3
+  ability: {fileID: 0}
+  consumable: {fileID: 0}
+>>>>>>> b9d4795d27364fa2ea3e3454787b4ded06a6060c
 --- !u!1 &1334305007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1922215315214850823, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
@@ -794,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 1334305010}
     - target: {fileID: 1922215315214850822, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1922215315214850822, guid: 22213a31d4cf8c74f8b24ac3258f7c8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -875,6 +913,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
+  - {fileID: 514038744}
   - {fileID: 1472409588}
   m_Father: {fileID: 855834599}
   m_RootOrder: 0
@@ -1178,6 +1217,7 @@ MonoBehaviour:
   deathTimer: 0
   _health: 100
   player: {fileID: 855834597}
+  weapon: {fileID: 3500183457494130739, guid: da673d37966fb574eab93a43c2f9e137, type: 3}
   moveSpeed: 1
   damage: 10
 --- !u!114 &1896803101
@@ -1402,3 +1442,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2584837081669742945
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1480543329}
+    m_Modifications:
+    - target: {fileID: 2584837081441053366, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_Name
+      value: soulWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.037673
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053369, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584837081441053371, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}
+      propertyPath: equipper
+      value: 
+      objectReference: {fileID: 855834597}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa8c0e2940505d44e937c91ea4d304a7, type: 3}

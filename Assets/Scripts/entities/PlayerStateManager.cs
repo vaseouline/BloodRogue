@@ -10,6 +10,7 @@ public class PlayerStateManager : entity
     
     //This is going to be currentweapon player is holding that can be swapped
     public GameObject weapon;
+    public GameObject soulweapon;
 
     private Vector2 lookDir;
     public GameObject handPosition;
@@ -18,7 +19,9 @@ public class PlayerStateManager : entity
     private Quaternion lookRotation;
     public float armlength;
 
-    public GameObject bloodgun;
+    private int ammoCharge;
+    public int currSoulAmmoCount;
+
     public GameObject ability;
     public GameObject consumable;
     public int ammoChargeCountTotal = 10;
@@ -43,8 +46,7 @@ public class PlayerStateManager : entity
         //Instantiate()
         //this is only so player can instantiate a copy when needed.
         base.Start();
-        ammoChargeCountCurrent = ammoChargeCountTotal;
-        bloodgun.SetActive(false);
+        Debug.Log("Starting with" + ammoChargeCountTotal.ToString() + " ammo");
         Debug.Log(weapon.transform.localScale);
         //health = 6;
 
@@ -92,7 +94,17 @@ public class PlayerStateManager : entity
         weapon.GetComponent<weapon>().Swing(handPosition.GetComponent<Transform>().position);
     }
 
-    private void GetWeapon(GameObject newWeapon) {
+    public void RequestSoulCharge() {
+        if (currSoulAmmoCount == 0) {
+            return;
+        }
+        if (soulweapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
+            currSoulAmmoCount -=1;
+        }
+
+    }
+
+    public void GetWeapon(GameObject newWeapon) {
         Debug.Log(newWeapon);
         GameObject createdWeapon = InitializeWeapon(newWeapon);
         SwitchWeapon(createdWeapon);
@@ -105,10 +117,10 @@ public class PlayerStateManager : entity
     }
 
     private void SwitchWeapon(GameObject createdWeapon) {
-        DestroyImmediate(weapon);
+        Destroy(weapon);
         weapon = createdWeapon;
+
         createdWeapon.transform.parent = handPosition.transform;
-        //weapon.transform.parent = handPosition.transform;
         Vector3 calc = Utilities.MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
         createdWeapon.transform.localScale = Utilities.MatrixMultiplication(createdWeapon.transform.localScale, calc);
         Debug.Log(calc);
@@ -128,6 +140,10 @@ public class PlayerStateManager : entity
     public void IncreaseAmmoTotal() {
         ammoChargeCountTotal += 1;
         ammoChargeCountCurrent += 1;//maybe remove this. only weird case, is if you have 0 ammo, and pick this up, it gives you an extra shot. It might be good for split second choices/increasing combos
+    }
+
+    public void RegainSoulCharge(){
+        currSoulAmmoCount +=1;
     }
 
 }

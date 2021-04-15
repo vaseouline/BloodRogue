@@ -6,6 +6,7 @@ public class enemy : entity
 {
 
     public GameObject player; 
+    public GameObject weapon;
     // Start is called before the first frame update
     public float moveSpeed;
     private Collider2D cldr;
@@ -37,5 +38,9 @@ public class enemy : entity
             
             collision.gameObject.GetComponent<entity>().TakeDamage(damage);
         }
+    }
+
+    public GameObject GetWeapon() {
+        return this.weapon;
     }
 }
