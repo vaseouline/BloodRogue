@@ -1,6 +1,6 @@
 left click: Shoot
     shoot when ammo
-right click: Soul Extraction/throwing knife
+right click: Living Blood Extraction/thread and needle
     throw regardless of ammo
     Recharges ammo to full on landing
     Only 1 thrown at a time
@@ -8,6 +8,11 @@ right click: Soul Extraction/throwing knife
     Accurate
     Has an internal short cooldown. like .1 second
     3x charge system. Repickup charges after kill or miss.
+    Starts a dash. Throws a hitscan needle. with a thread/line.
+    If the needle connects, thread turns flashes/glows red in the direction from the enemy to the player, and falls from the enemy to the player.
+    Needle remains stuck to enemy until internal cooldown drops.
+    Killing enemy drops needle.
+    Picking up missed or dropped needles drops the cooldown to 0
 combo system: BloodRush
     combo window: slowly closes until a kill
     Bloodrush is entered on a combo of atleast 5
