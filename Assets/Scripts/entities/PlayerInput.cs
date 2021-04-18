@@ -43,8 +43,10 @@ public class PlayerInput : MonoBehaviour
             playerState.RequestShootWeapon();
         }
         if (mouse1) {
-            playerState.RequestSoulCharge();
-            playerState.RequestDash(movement);
+            if(playerState.RequestSoulCharge()) {
+                playerState.RequestDash(movement);
+            }
+            
         }
     }
 

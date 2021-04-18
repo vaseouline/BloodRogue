@@ -31,7 +31,6 @@ public class soulbullet : bullet
             Die();
         }
 
-        Debug.Log(collision.gameObject.name);
         inAir = false;
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), false);

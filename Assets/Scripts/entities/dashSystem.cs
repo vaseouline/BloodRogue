@@ -9,28 +9,45 @@ public class dashSystem : MonoBehaviour
     public float dashDuration;
     private Rigidbody2D rb;
     private Vector2 dashDirection;
-    private bool isDash;
+    public bool isDash;
+    private float dashInterval;
+    public bool canDash = true;
+
+    public float tempDashForce;
+
 
     void Start() {
-        // rb = this.gameObject.GetComponent<Rigidbody2D>();
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
         isDash = false;
     }
     public void Dash(Vector2 movement) {
-        dashDirection = movement.normalized;
-        Debug.Log("Dashing start");
-        
+        if (canDash && !isDash) {
+            isDash = true;
+            dashDirection = movement.normalized;
+            dashInterval = dashDuration;
+            Debug.Log("Dashing direction: " + dashDirection);
+            this.gameObject.GetComponent<PlayerStateManager>().canControlMovement = false;
+        }
     }
 
     void Update() {
         if (isDash) {
-            Vector2 dashVelocity = Vector2.Scale(dashDirection, dashDistance * new Vector2((Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime),(Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime)));
-        rb.AddForce(dashVelocity, ForceMode2D.Force);
+            Vector2 dashVelocity = dashDirection * (tempDashForce);
+            rb.AddForce(dashVelocity, 0);
         }
         
     }
 
     void FixedUpdate() {
-
-            // rb.MovePosition(rb.position + dashDirection.normalized * dashDistance * Time.fixedDeltaTime);
+        if (isDash && dashInterval > 0) {
+            dashInterval--;
+        }
+        if (isDash && dashInterval <= 0) {
+            isDash = false;
+            this.gameObject.GetComponent<PlayerStateManager>().canControlMovement = true;
+            rb.velocity = Vector2.zero;
+            Debug.Log("Dash End");
+        }
+        
     }
 }

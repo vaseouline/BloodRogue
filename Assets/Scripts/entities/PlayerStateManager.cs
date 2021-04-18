@@ -24,6 +24,7 @@ public class PlayerStateManager : entity
 
     public GameObject ability;
     public GameObject consumable;
+    public bool canControlMovement = true;
     public int ammoChargeCountTotal = 10;
     private int _ammoChargeCountCurrent;
     private int ammoChargeCountCurrent {
@@ -49,7 +50,6 @@ public class PlayerStateManager : entity
         //this is only so player can instantiate a copy when needed.
         base.Start();
         Debug.Log("Starting with" + ammoChargeCountTotal.ToString() + " ammo");
-        Debug.Log(weapon.transform.localScale);
         //health = 6;
 
     }
@@ -66,7 +66,9 @@ public class PlayerStateManager : entity
     }
 
     public void RequestMove(Vector2 movement) {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        if (canControlMovement) {
+            rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     public void RequestPlayerAngle(Vector2 mousePos) {
@@ -97,15 +99,16 @@ public class PlayerStateManager : entity
         weapon.GetComponent<weapon>().Swing(handPosition.GetComponent<Transform>().position);
     }
 
-    public void RequestSoulCharge() {
-        if (currSoulAmmoCount == 0) {
+    public bool RequestSoulCharge() {
+        //TODO rework weapon ownership and handling
+        if (currSoulAmmoCount <= 0) {
             Debug.Log("Out of soul charge");
-            return;
+            return false;
         }
         if (soulweapon.GetComponent<weapon>().Shoot(handPosition.GetComponent<Transform>().position)) {
             currSoulAmmoCount -=1;
         }
-
+        return true;
     }
 
     public void GetWeapon(GameObject newWeapon) {
@@ -127,7 +130,6 @@ public class PlayerStateManager : entity
         createdWeapon.transform.parent = handPosition.transform;
         Vector3 calc = Utilities.MatrixMultiplication(this.transform.localScale, handPosition.transform.localScale);
         createdWeapon.transform.localScale = Utilities.MatrixMultiplication(createdWeapon.transform.localScale, calc);
-        Debug.Log(calc);
     }
 
     private void SubtractAmmoCount(int ammoCost){
