@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour
         }
         if (mouse1) {
             playerState.RequestSoulCharge();
-            //playerState.RequestSwingWeapon();
+            playerState.RequestDash(movement);
         }
     }
 

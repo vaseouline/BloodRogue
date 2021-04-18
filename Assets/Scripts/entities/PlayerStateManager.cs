@@ -38,6 +38,8 @@ public class PlayerStateManager : entity
 
     }
     
+    public dashSystem dash; 
+    
 
     // Start is called before the first frame update
     new void Start()
@@ -70,9 +72,10 @@ public class PlayerStateManager : entity
     public void RequestPlayerAngle(Vector2 mousePos) {
         float angle = Utilities.AngleBetweenTwoPoints(mousePos, rb.position);
         newLookDir = (mousePos - rb.position).normalized;
-        Vector3 newPosition = rb.position + newLookDir * armlength;
-        handPosition.GetComponent<Transform>().position = newPosition;
-        handPosition.GetComponent<Transform>().rotation = Quaternion.Euler (new Vector3(0f,0f,angle));
+        rb.rotation = angle;
+
+        float handAngle =  Utilities.AngleBetweenTwoPoints(mousePos, handPosition.GetComponent<Transform>().position);
+        handPosition.GetComponent<Transform>().rotation = Quaternion.Euler (new Vector3(0f,0f,handAngle));
     }
 
     public void RequestShootWeapon() {
@@ -145,6 +148,10 @@ public class PlayerStateManager : entity
 
     public void RegainSoulCharge(){
         currSoulAmmoCount +=1;
+    }
+
+    public void RequestDash(Vector2 movement) {
+        dash.Dash(movement);
     }
 
 }
