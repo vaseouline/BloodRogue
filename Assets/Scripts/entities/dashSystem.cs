@@ -23,11 +23,19 @@ public class dashSystem : MonoBehaviour
     public void Dash(Vector2 movement) {
         if (canDash && !isDash) {
             isDash = true;
-            dashDirection = movement.normalized;
+            dashDirection = getDashDirection(movement);
             dashInterval = dashDuration;
             Debug.Log("Dashing direction: " + dashDirection);
             this.gameObject.GetComponent<PlayerStateManager>().canControlMovement = false;
         }
+    }
+
+    private Vector2 getDashDirection(Vector2 movement) {
+        Debug.Log("sqr:" + movement.SqrMagnitude());
+        if (Mathf.Approximately(movement.SqrMagnitude(), 0)) {
+            return rb.transform.right;
+        }
+        return movement.normalized;
     }
 
     void Update() {
