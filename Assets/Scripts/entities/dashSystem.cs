@@ -5,7 +5,6 @@ using UnityEngine;
 public class dashSystem : MonoBehaviour 
 {
 
-    public float dashDistance;
     public float dashDuration;
     private Rigidbody2D rb;
     private Vector2 dashDirection;
@@ -13,7 +12,7 @@ public class dashSystem : MonoBehaviour
     private float dashInterval;
     public bool canDash = true;
 
-    public float tempDashForce;
+    public float dashForce;
 
 
     void Start() {
@@ -21,9 +20,14 @@ public class dashSystem : MonoBehaviour
         isDash = false;
     }
     public void Dash(Vector2 movement) {
+        if (Mathf.Approximately(movement.SqrMagnitude(), 0)) {
+            Debug.Log("Need to be moving to Dash. Direction: " + movement);
+            return;
+        }
         if (canDash && !isDash) {
             isDash = true;
             dashDirection = getDashDirection(movement);
+            
             dashInterval = dashDuration;
             Debug.Log("Dashing direction: " + dashDirection);
             this.gameObject.GetComponent<PlayerStateManager>().canControlMovement = false;
@@ -40,7 +44,7 @@ public class dashSystem : MonoBehaviour
 
     void Update() {
         if (isDash) {
-            Vector2 dashVelocity = dashDirection * (tempDashForce);
+            Vector2 dashVelocity = dashDirection * (dashForce);
             rb.AddForce(dashVelocity, 0);
         }
         

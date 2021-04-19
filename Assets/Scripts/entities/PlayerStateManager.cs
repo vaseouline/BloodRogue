@@ -24,6 +24,7 @@ public class PlayerStateManager : entity
 
     public GameObject ability;
     public GameObject consumable;
+    private Vector2 currentMovement;
     public bool canControlMovement = true;
     public int ammoChargeCountTotal = 10;
     private int _ammoChargeCountCurrent;
@@ -65,15 +66,21 @@ public class PlayerStateManager : entity
        
     }
 
-    public void RequestMove(Vector2 movement) {
+    public void RequestMove(Vector2 direction) {
+        currentMovement = direction.normalized;
+        if (direction.sqrMagnitude < 0.01) {
+            currentMovement = Vector2.zero;
+            return;
+        }
+        
+        var scaledMoveSpeed = moveSpeed * Time.fixedDeltaTime;
         if (canControlMovement) {
-            rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction.normalized * scaledMoveSpeed);
         }
     }
 
     public void RequestPlayerAngle(Vector2 mousePos) {
         float angle = Utilities.AngleBetweenTwoPoints(mousePos, rb.position);
-        newLookDir = (mousePos - rb.position).normalized;
         rb.rotation = angle;
 
         float handAngle =  Utilities.AngleBetweenTwoPoints(mousePos, handPosition.GetComponent<Transform>().position);
@@ -152,8 +159,8 @@ public class PlayerStateManager : entity
         currSoulAmmoCount +=1;
     }
 
-    public void RequestDash(Vector2 movement) {
-        dash.Dash(movement);
+    public void RequestDash() {
+        dash.Dash(currentMovement);
     }
 
 }

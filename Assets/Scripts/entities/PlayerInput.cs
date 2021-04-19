@@ -5,13 +5,25 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private PlayerStateManager playerState;
-    Vector2 movement;
-    Vector2 mousePos;
     public Camera cam;
 
-    
-    private Vector2 oldLookDir;
-    private Vector2 newLookDir; 
+    private InputMaster controls;
+
+    void Awake() {
+        controls = new InputMaster();
+        controls.Player.Shoot.performed += _ => playerState.RequestShootWeapon();
+        controls.Player.Extraction.performed += _ => playerState.RequestSoulCharge();
+        controls.Player.Dash.performed += ctx => playerState.RequestDash();
+    }
+
+    void OnEnable() {
+        controls.Enable();
+    }
+
+    void OnDisable() {
+        controls.Disable();
+    }
+
 
     void Start()
     {
@@ -21,33 +33,18 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        takeInput();
+        
+        
     }
 
     void FixedUpdate()
     {
+        var look = cam.ScreenToWorldPoint(controls.Player.Look.ReadValue<Vector2>());
+        var movement = controls.Player.Move.ReadValue<Vector2>();
+        
+        playerState.RequestPlayerAngle(look);
         playerState.RequestMove(movement);
-        playerState.RequestPlayerAngle(mousePos);
     }
 
-
-    private void takeInput() {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        var mouse0 = Input.GetMouseButtonDown(0);
-        var mouse1 = Input.GetMouseButtonDown(1);
-        if (mouse0)
-        {
-            playerState.RequestShootWeapon();
-        }
-        if (mouse1) {
-            if(playerState.RequestSoulCharge()) {
-                playerState.RequestDash(movement);
-            }
-            
-        }
-    }
-
+    
 }
