@@ -43,4 +43,9 @@ public class enemy : entity
     public GameObject GetWeapon() {
         return this.weapon;
     }
+
+    public override void Die() {
+        ComboCounterSystem.increaseCounter();
+        base.Die();
+    }
 }

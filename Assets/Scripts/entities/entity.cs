@@ -24,7 +24,7 @@ public abstract class entity : MonoBehaviour
     private bool markedForDeath;
 
 
-    public void Die() {
+    public virtual void Die() {
         Die(deathTimer);
     }
     public void Die(int timer) {
@@ -36,7 +36,7 @@ public abstract class entity : MonoBehaviour
         Destroy(this.gameObject, timer);
     }
 
-    public void TakeDamage(int damage) {
+    public virtual void TakeDamage(int damage) {
         Debug.Log(this.name + " took "+ damage + " damage.");
         health -= damage;
     }

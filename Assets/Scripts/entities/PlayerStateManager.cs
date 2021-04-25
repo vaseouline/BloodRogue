@@ -66,6 +66,11 @@ public class PlayerStateManager : entity
        
     }
 
+    public override void TakeDamage(int damage) {
+        UI.Instance.updateHp(health);
+        base.TakeDamage(damage);
+    }
+
     public void RequestMove(Vector2 direction) {
         currentMovement = direction.normalized;
         if (direction.sqrMagnitude < 0.01) {
@@ -143,16 +148,21 @@ public class PlayerStateManager : entity
         ammoChargeCountCurrent -= ammoCost;
         //userInterface.GetComponent<UI>().updateAmmo(currAmmoCount);
         Debug.Log("current ammo: " + ammoChargeCountCurrent);
+        UI.Instance.updateAmmo(ammoChargeCountCurrent);
     }
 
     public void ResetAmmoToTotal() {
         ammoChargeCountCurrent = ammoChargeCountTotal;
         Debug.Log("Reset! current ammo: " + ammoChargeCountCurrent);
+        UI.Instance.updateAmmo(ammoChargeCountCurrent);
+
     }
 
     public void IncreaseAmmoTotal() {
         ammoChargeCountTotal += 1;
         ammoChargeCountCurrent += 1;//maybe remove this. only weird case, is if you have 0 ammo, and pick this up, it gives you an extra shot. It might be good for split second choices/increasing combos
+        UI.Instance.updateAmmo(ammoChargeCountCurrent);
+
     }
 
     public void RegainSoulCharge(){

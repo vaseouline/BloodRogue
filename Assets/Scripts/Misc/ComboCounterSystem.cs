@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class ComboCounterSystem : MonoBehaviour
 {
-    public int comboCounter;
-    public float timeLeft;
-    public float comboResetTimer;
+    public static int comboCounter = 0;
+    public static float timeLeft = 0;
+    public static float comboResetTimer = 5;
 
     void Update()
     {
+        //Debug.Log(timeLeft);
         if (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
         }
-        if (timeLeft == 0)
+        if (timeLeft <= 0)
         {
+            timeLeft = 0;
             comboCounter = 0;
+            UI.Instance.updateCombo(comboCounter);
+
         }
     }
 
-    public void increaseCounter() {
+    public static void increaseCounter() {
         comboCounter +=1;
+        UI.Instance.updateCombo(comboCounter);
         timeLeft = comboResetTimer;
         // Works for now probably
         switch(comboCounter)
@@ -45,5 +50,7 @@ public class ComboCounterSystem : MonoBehaviour
             print ("Get a life.");
             break;
         }
+
+        //Debug.Log(comboCounter);
     }
 }
