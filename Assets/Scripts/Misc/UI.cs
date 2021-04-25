@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    public Sprite playerIcon;
+    public GameObject playerIcon;
     public GameObject hpPrefab;
     public Sprite weaponIcon;
 
     public GameObject player;
 
-    public Text hpUI;
     public Text ammoUI;
     public Text comboUI;
 
     private List<GameObject> hpList = new List<GameObject>();
 
-    public int spaceBetweenEachHP;
+    public float spaceBetweenEachHP;
+    public Vector3 initalOffset;
 
     private static UI _UIinstance;
 
@@ -32,7 +32,6 @@ public class UI : MonoBehaviour
 
             updateHp(player.GetComponent<PlayerStateManager>().health);
 
-            hpUI.text = "HP: " + player.GetComponent<PlayerStateManager>().health.ToString();
             ammoUI.text =  "Ammo: ";
             comboUI.text = "Combo: ";
             _UIinstance = this;
@@ -47,14 +46,13 @@ public class UI : MonoBehaviour
         //hpUI.text = "HP: " + hp.ToString();
         int diffHp = hp - hpList.Count;
         //Debug.Log("hp diff" + diffHp.ToString());
-        hpUI.text = "HP: " + hp.ToString();
 
         //Player gaining Hp
         for(int i = 0; i < diffHp; i ++) {
-            Vector3 offset = new Vector3(spaceBetweenEachHP*i , 0,0);
-            GameObject hpSpawned = Instantiate(hpPrefab, hpUI.transform.position + offset, this.gameObject.transform.rotation);
+            Vector3 offset = new Vector3(spaceBetweenEachHP* (i + 1) , 0,0);
+            GameObject hpSpawned = Instantiate(hpPrefab, playerIcon.transform.position + offset + initalOffset, this.gameObject.transform.rotation);
             hpSpawned.gameObject.GetComponent<Animator>().enabled = false;
-            hpSpawned.transform.parent = hpUI.transform;
+            hpSpawned.transform.parent = playerIcon.transform;
             hpList.Add(hpSpawned);
         }
 
