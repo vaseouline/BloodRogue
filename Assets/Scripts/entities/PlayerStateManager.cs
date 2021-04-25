@@ -67,8 +67,8 @@ public class PlayerStateManager : entity
     }
 
     public override void TakeDamage(int damage) {
-        UI.Instance.updateHp(health);
         base.TakeDamage(damage);
+        UI.Instance.updateHp(health);
     }
 
     public void RequestMove(Vector2 direction) {

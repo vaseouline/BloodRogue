@@ -46,6 +46,7 @@ public class UI : MonoBehaviour
     public void updateHp(int hp) {
         //hpUI.text = "HP: " + hp.ToString();
         int diffHp = hp - hpList.Count;
+        //Debug.Log("hp diff" + diffHp.ToString());
         hpUI.text = "HP: " + hp.ToString();
 
         //Player gaining Hp

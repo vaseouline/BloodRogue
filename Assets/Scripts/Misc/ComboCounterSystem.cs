@@ -32,22 +32,22 @@ public class ComboCounterSystem : MonoBehaviour
         switch(comboCounter)
         {
         case 1:
-            print ("Nice!");
+            Debug.Log("Nice!");
             break;
         case 5:
-            print ("Good job!");
+            Debug.Log("Good job!");
             break;
         case 10:
-            print ("Wow!");
+            Debug.Log("Wow!");
             break;
         case 15:
-            print ("Keep it up");
+            Debug.Log("Keep it up");
             break;
         case 30:
-            print ("So cool");
+            Debug.Log("So cool");
             break;
         case 50:
-            print ("Get a life.");
+            Debug.Log("Get a life.");
             break;
         }
 
